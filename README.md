@@ -2,7 +2,7 @@
 
 Here is my take on the daily challenges of the [Advent of Code 2023](https://adventofcode.com/2023).
 
-I havve chosen to do the challenges in JavaScript, to be run in a terminal.
+I have chosen to do the challenges in JavaScript, to be run in a terminal.
 
 ## How to run my solutions to the challenges
 

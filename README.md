@@ -25,8 +25,5 @@ node ./day-2/part-2 # for Day 1 - part 2
 - 03/12: ✅
 - 04/12: ✅
 - 05/12: ❗️
-    * Part 1: ✅
-    * Part 2: ☠️
-- 06/12:
-    * Part 1: ✅
-    * Part 2: soon
+    * Part 1: ✅ | Part 2: ☠️
+- 06/12: ✅

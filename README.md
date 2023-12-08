@@ -31,3 +31,7 @@ node ./day-2/part-2 # for Day 1 - part 2
     * Part 2: ☠️
 - 06/12: ✅
 - 07/12: ✅
+
+### Week 2
+
+- 08/12: ✅

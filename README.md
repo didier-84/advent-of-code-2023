@@ -35,3 +35,4 @@ node ./day-2/part-2 # for Day 1 - part 2
 ### Week 2
 
 - 08/12: ✅
+- 09/12: ✅

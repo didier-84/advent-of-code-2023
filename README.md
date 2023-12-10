@@ -9,11 +9,11 @@ I have chosen to do the challenges in JavaScript, to be run in a terminal.
 With Node installed, open your Terminal and run commands like so:
 
 ```bash
-node ./day-1/part-1 # for Day 1 - part 1
-node ./day-1/part-2 # for Day 1 - part 2
+node ./day-01/part-1 # for Day 01 - part 1
+node ./day-01/part-2 # for Day 01 - part 2
 
-node ./day-2/part-1 # for Day 2 - part 1
-node ./day-2/part-2 # for Day 1 - part 2
+node ./day-02/part-1 # for Day 02 - part 1
+node ./day-02/part-2 # for Day 02 - part 2
 
 # ...and so on...
 ```

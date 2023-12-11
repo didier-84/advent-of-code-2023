@@ -3,7 +3,7 @@ import values from './../values.js'
 const day  = 10
 const part = 1
 
-const {testInput, input} = values
+const {testInputPartOne: testInput, input} = values
 const expectedTestResult = 8
 
 class Task {

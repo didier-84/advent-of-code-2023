@@ -1,4 +1,4 @@
-const testInput = `
+const testInputPartOne =`
 7-F7-
 .FJ|7
 SJLL7
@@ -6,6 +6,18 @@ SJLL7
 LJ.LJ
 `
 
+const testInputPartTwo = `
+.F----7F7F7F7F-7....
+.|F--7||||||||FJ....
+.||.FJ||||||||L7....
+FJL7L7LJLJ||LJ.L-7..
+L--J.L7...LJS7F-7L7.
+....F-J..F7FJ|L7L7L7
+....L7.F7||L7|.L7L7|
+.....|FJLJ|FJ|F7|.LJ
+....FJL-7.||.||||...
+....L---J.LJ.LJLJ...
+`
 
 const input = `
 F-L----F7-7.F-7JJ.F--L-.F|F77.L|7.FLF-7.JJ--7FF-F-F7F7.7-F-7.L.FL7F|7--777.FJ-|7J-F-J-77-FF-F-7.JF77.L.JFL.L-|-FF7-77FL--F77.7-|77F7|7FF7-7-
@@ -150,4 +162,4 @@ F-|.F7|.FJ7FL-|-7F||L-J|F7F-L7J-7--F7FFLJLFFL7J|7|F-7F|.|LF7|.L|-LLJFJJ..L-JF7|F
 F-J-L--|.LFJ-F|-J-----|.LLLJL7-JJ.F-L-7-F---JLJLLLL.7LL|LFJ|L--LL---L7-FJ.L|--L-JLL7L7.LLLJ-FJL|J-LLJL.|.JJLLLJ.LLF.L77LL|-J-|-7JJ..L-7JJ.-J
 `
 
-export default {testInput, input}
+export default {testInputPartOne, testInputPartTwo, input}

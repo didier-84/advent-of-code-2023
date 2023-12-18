@@ -1,3 +1,4 @@
+import Block  from './Block.js'
 import values from './../values.js'
 
 const day  = 17
@@ -11,9 +12,10 @@ class Task {
     this.input = input
     this.blocks = {}
 
-    this.endKey = ''
-
-    this.stack = []
+    this.stack = {
+      0:[], 1:[], 2:[], 3:[], 4:[],
+      5:[], 6:[], 7:[], 8:[], 9:[]
+    }
     this.visited   = {}
     this.bestTotal = Number.MAX_SAFE_INTEGER
 
@@ -23,23 +25,33 @@ class Task {
   run() {
     this.addNextBlocks('0-0', 'E', 1, 0)
 
-    while(this.stack.length > 0) {
-      let nextStep = this.stack.pop()
+    let nextStep = this.getNextStepFromStack()
+
+    while (nextStep != undefined) {
       this.process(nextStep)
+      nextStep = this.getNextStepFromStack()
     }
 
     return this.bestTotal
   }
 
+  getNextStepFromStack() {
+    for (let heat in this.stack) {
+      if (this.stack[heat].length == 0) continue
+      let nextStep = this.stack[heat].pop()
+      return nextStep
+    }
+  }
+
   process(step) {
     let { key, direction, distance, heatLoss } = step
-
     let block = this.blocks[key]
-    heatLoss  = heatLoss + block.heat
+
+    heatLoss = heatLoss + block.heat
 
     if (heatLoss > this.bestTotal) return
 
-    if (key == this.endKey) {
+    if (block.isTheEnd) {
       this.bestTotal = heatLoss
       return
     }
@@ -49,51 +61,58 @@ class Task {
 
   addNextBlocks(key, direction, distance, heatLoss) {
     let block = this.blocks[key]
-    let steps = []
 
-    let nextDirections = ('NS'.includes(direction)) ? ['W', 'E'] : ['N', 'S']
+    let nextDirections = []
+
+    let isNS = (direction == 'N' || direction == 'S')
+    if (isNS) {
+      nextDirections.push('W')
+      nextDirections.push('E')
+    } else {
+      nextDirections.push('N')
+      nextDirections.push('S')
+    }
+
     if (distance < 3) nextDirections.push(direction)
 
     nextDirections.forEach((nextDirection) => {
       let prevHeatLoss = undefined
-      let nextKey  = ''
       let nextDistance = (nextDirection == direction) ? (distance + 1) : 1
 
-      switch (nextDirection) {
-        case 'N': nextKey = `${block.row - 1}-${block.col}`; break
-        case 'S': nextKey = `${block.row + 1}-${block.col}`; break
-        case 'W': nextKey = `${block.row}-${block.col - 1}`; break
-        case 'E': nextKey = `${block.row}-${block.col + 1}`; break
-      }
+      let nextKey = block.nextKeyTo(nextDirection)
 
       if (this.blocks[nextKey] != undefined ) {
         prevHeatLoss = this.getHeatLossOfalreadyVisited(nextKey, nextDirection, nextDistance)
 
         if (prevHeatLoss == undefined || prevHeatLoss > heatLoss) {
           this.markAsVisited(nextKey, nextDirection, nextDistance, heatLoss)
-          this.addToNextSteps(nextKey, nextDirection, nextDistance, heatLoss)
+          this.addToNextSteps(nextKey, nextDirection, nextDistance, heatLoss, block.heat)
         }
       }
     })
   }
 
-  oppositeDirection(direction) {
-    const directions = {N: 'S', E: 'W', S: 'N', W:'E'}
-    return directions[direction]
-  }
-
   getHeatLossOfalreadyVisited(blockKey, direction, distance) {
-    let key = [blockKey, direction, distance].join('|')
-    return this.visited[key]
+    if (this.visited[blockKey] == undefined)            return undefined
+    if (this.visited[blockKey][direction] == undefined) return undefined
+
+    return this.visited[blockKey][direction][distance]
   }
 
   markAsVisited(blockKey, direction, distance, heatLoss) {
-    let key = [blockKey, direction, distance].join('|')
-    this.visited[key] = heatLoss
+    if (this.visited[blockKey] == undefined) {
+      this.visited[blockKey] = {}
+    }
+
+    if (this.visited[blockKey][direction] == undefined) {
+      this.visited[blockKey][direction] = {}
+    }
+
+    this.visited[blockKey][direction][distance] = heatLoss
   }
 
-  addToNextSteps(key, direction, distance, heatLoss) {
-    this.stack.push({ key, direction, distance, heatLoss })
+  addToNextSteps(key, direction, distance, heatLoss, heat) {
+    this.stack[heat].push({ key, direction, distance, heatLoss })
   }
 
   prepareBlocks() {
@@ -103,16 +122,13 @@ class Task {
                          .replace(/\//g, '╱')
                          .split('\n')
 
-    this.endKey = `${rows.length - 1}-${rows[0].length - 1}`
+    let maxRow = rows.length    - 1
+    let maxCol = rows[0].length - 1
 
-    for (let i = 0; i < rows.length; i++) {
-      for (let j = 0; j < rows[0].length; j++) {
-        let key = `${i}-${j}`
-        this.blocks[key] = {
-          heat: parseInt(rows[i][j]),
-          row:  i,
-          col:  j
-        }
+    for (let row = 0; row <= maxRow; row++) {
+      for (let col = 0; col <= maxCol; col++) {
+        let block = new Block(row, col, rows[row][col], maxRow, maxCol)
+        this.blocks[block.key] = block
       }
     }
   }

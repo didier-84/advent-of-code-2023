@@ -48,3 +48,4 @@ node ./day-02/part-2 # for Day 02 - part 2
 - 18/12: ...
   * Part 1: ✅
   * Part 2: ☠️
+- 19/12: ✅

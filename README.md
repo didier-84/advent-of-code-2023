@@ -21,7 +21,7 @@ node ./day-02/part-2 # for Day 02 - part 2
 ## My progression
 
 ```
-### Week 1
+Week 1
 
 - 01/12: ✅
 - 02/12: ✅
@@ -31,7 +31,7 @@ node ./day-02/part-2 # for Day 02 - part 2
 - 06/12: ✅
 - 07/12: ✅
 
-### Week 2
+Week 2
 
 - 08/12: ✅
 - 09/12: ✅
@@ -41,7 +41,7 @@ node ./day-02/part-2 # for Day 02 - part 2
 - 13/12: ✅
 - 14/12: ✅
 
-### Week 3
+Week 3
 
 - 15/12: ✅
 - 16/12: ✅

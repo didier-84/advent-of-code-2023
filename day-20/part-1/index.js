@@ -1,7 +1,7 @@
 import ModuleBuilder  from './ModuleBuilder.js'
 import values from './../values.js'
 
-const day  = 19
+const day  = 20
 const part = 1
 
 const {testInputOne, testInputTwo, input} = values
